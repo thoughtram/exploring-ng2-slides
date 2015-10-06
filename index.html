@@ -1,0 +1,1472 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Angular 2 Master Class - Getting Started | thoughtram</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="thoughtram">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/thoughtram.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+      foo-code {
+        padding: 0.8em;
+        background: #eee;
+        display: block;
+        color: #aaa;
+      }
+      .blink {
+        animation: blink 1s steps(5, start) infinite;
+        -webkit-animation: blink 1s steps(5, start) infinite;
+      }
+      @keyframes blink {
+        to { visibility: hidden; }
+      }
+      @-webkit-keyframes blink {
+        to { visibility: hidden; }
+      }
+    </style>
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script src="vendor/angular.js"></script>
+  </head>
+
+  <body ng-app="slides">
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section class="deck-slide" data-background-image="/img/thoughtram-polygons.png" background-repeat="no-repeat">
+          <h1>AngularJS Days 2015</h1>
+          <h3>Getting Started with Angular 2</h3>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Welcome!</h2>
+        </section>
+
+        <section class="about-slide">
+          <div class="fragment">
+          <h2>About us</h2>
+          <div class="about">
+            <img width="250" height="250" alt="Christoph" src="img/christoph.png">
+            <h3>Christoph Burgdorf</h3>
+            <h3><a href="http://twitter.com/cburgdorf">@cburgdorf</a></h3>
+          </div>
+          <div class="about">
+            <img width="250" height="250" alt="Pascal" src="img/pascal.jpeg">
+            <h3>Pascal Precht</h3>
+            <h3><a href="http://twitter.com/PascalPrecht">@PascalPrecht</a></h3>
+          </div>
+          </div>
+        </section>
+
+        <section class="about-thoughtram-slide">
+          <img class="pulse" alt="thoughtram brain pulse" src="img/thoughtram-brain-big.png">
+        </section>
+
+        <section data-state="window-background" data-background="images/blog.png">
+          <img class="fragment" src="images/url.svg">
+        </section>
+
+        <section data-background-transition="none" data-state="window-background" data-background="images/exploring-angular-2.png">
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Todays plans</h2>
+        </section>
+
+        <section>
+          <div class="fragment">
+            <h2>Todays Plans</h2>
+          </div>
+          <ol>
+            <li class="fragment"><strong>ES2015/TypeScript Basics</strong> - Classes, Decorators, Modules...</li>
+            <li class="fragment"><strong>Bootstrapping</strong> - We bootstrap our first application</li>
+            <li class="fragment"><strong>Services</strong> - Implementing a simple service</li>
+            <li class="fragment"><strong>Dependency Injection</strong> - Injector Bindings and Trees</li>
+            <li class="fragment"><strong>Directives</strong> - A brief usage of built-in directives</li>
+            <li class="fragment"><strong>Template Syntax</strong> - Binding types</li>
+            <li class="fragment"><strong>Routing</strong> - Simple component routing</li>
+            <li class="fragment"><strong>Forms</strong> - View and Model driven</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Ask questions whenever you like!</h3>
+        </section>
+
+        <section>
+          <h3>Here's what we build today</h3>
+          <img class="fragment" src="images/app.svg">
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>ES2015/TypeScript Basics</h2>
+        </section>
+        <section class="image-slide">
+          <img class="fragment" src="images/ts-es2015-1.svg">
+        </section>
+        <section class="image-slide">
+          <img src="images/ts-es2015-2.svg">
+        </section>
+        <section class="image-slide">
+          <img src="images/ts-es2015-3.svg">
+        </section>
+
+        <section>
+          <h2>Classes</h2>
+          <p>Syntactic sugar for JavaScript prototypes introduced in ES2015.</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>class Car { 
+
+  manufacturer:string;
+
+  constructor(manufacturer:string = 'BMW') {
+    this.manufacturer = manufacturer;
+  }
+
+  drive(miles:number) {}
+}
+            
+let bmw = new Car();</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>class Car { 
+
+  <span style="color:#000;">manufacturer:string;</span>
+
+  constructor(manufacturer:string = 'BMW') {
+    this.manufacturer = manufacturer;
+  }
+
+  drive(miles:number) {}
+}
+            
+let bmw = new Car();</foo-code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>class Car { 
+
+  manufacturer:string;
+
+  <span style="color: #000;">constructor(manufacturer:string = 'BMW') {
+    this.manufacturer = manufacturer;
+  }</span>
+
+  drive(miles:number) {}
+}
+            
+let bmw = new Car();</foo-code></pre>
+        </section>
+
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>class Car { 
+
+  manufacturer:string;
+
+  constructor(manufacturer:string = 'BMW') {
+    this.manufacturer = manufacturer;
+  }
+
+  <span style="color:#000;">drive(miles:number) {}</span>
+}
+            
+let bmw = new Car();</foo-code></pre>
+        </section>
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>class Car { 
+
+  manufacturer:string;
+
+  constructor(manufacturer:string = 'BMW') {
+    this.manufacturer = manufacturer;
+  }
+
+  drive(miles:number) {}
+}
+            
+<span style="color: #000;">let bmw = new Car();</span></foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>class Car { ... }
+
+class Convertible extends Car {
+
+}
+            
+let cabrio = new Convertible();</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>class Car { ... }
+
+<span style="color: #000;">class Convertible extends Car {
+
+}</span>
+            
+let cabrio = new Convertible();</foo-code></pre>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+          <p>ES2015 brings a module system to the table that enables us to write modular code.</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>// Car.js
+
+export class Car { ... }
+
+export class Convertible extends Car {
+  ...
+}</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>// Car.js
+
+<span style="color: #000;">export</span> class Car { ... }
+
+<span style="color: #000;">export</span> class Convertible extends Car {
+  ...
+}</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>// App.js
+
+import {Car, Convertible} from 'Car';
+
+let bmw = new Car();
+let cabrio = new Convertible();</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>// App.js
+
+<span style="color: #000;">import {Car, Convertible} from 'Car';</span>
+
+let bmw = new Car();
+let cabrio = new Convertible();</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>// App.js
+
+import {Car, Convertible} from 'Car';
+
+<span style="color: #000;">let bmw = new Car();
+let cabrio = new Convertible();</span></code></pre>
+        </section>
+
+        <section>
+          <h2>Type Annotations</h2>
+          <p>Type annotations provide optional static typing. Applied using <code>: T</code> syntax</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';
+          
+var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];
+          
+function add(x: number, y: number): number {
+  return x+y;
+}</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code><span style="color: #000;">var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';</span>
+          
+var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];
+          
+function add(x: number, y: number): number {
+  return x+y;
+}</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';
+          
+<span style="color: #000;">var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];</span>
+          
+function add(x: number, y: number): number {
+  return x+y;
+}</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';
+          
+var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];
+          
+function add(<span style="color: #000;">x: number, y: number</span>): number {
+  return x+y;
+}</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';
+          
+var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];
+          
+function add(x: number, y: number)<span style="color: #000;">: number</span> {
+  return x+y;
+}</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>var height:number = 6;
+var isDone:boolean = true;
+var name:string = 'thoughtram';
+          
+var list:number[] = [1, 2, 3];
+var list:Array&lt;number&gt; = [1, 2, 3];
+          
+function add(x: number, y: number): number {
+  return x+y;
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Decorators</h2>
+          <p>A decorator is an <strong>expression</strong> that is evaluated after a class has been defined, that can be used to <strong>annotate or modify</strong> the class in some fashion.</p>
+          <tabs >
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.70em; line-height: 40px;"><code>@someDecoratorExpression()
+class Car {
+
+  @propertyDecorator() manufacturer: string;
+
+  constructor(@paramDecorator() manufacturer: string) {
+
+  }
+
+  @methodDecorator()
+  drive() {
+
+  }
+}</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.70em; line-height: 40px;"><foo-code><span style="color: #000;">@someDecoratorExpression()</span>
+class Car {
+
+  <span style="color: #000;">@propertyDecorator()</span> manufacturer: string;
+
+  constructor(<span style="color: #000;">@paramDecorator()</span> manufacturer: string) {
+
+  }
+
+  <span style="color: #000;">@methodDecorator()</span>
+  drive() {
+
+  }
+}</foo-code></pre>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Angular 2</h2>
+        </section>
+
+        <section data-background="#000" style="color: #fff;">
+          <h1 style="color: #F97474;" class="blink">Warning!</h1>
+          <p style="margin-top: 2em; font-size: 1.2em; line-height: 1.6em;">Everything in this workshop is based on alpha developer previews. Things might change in the future.</p>
+          <p style="margin-top: 2em;">(Do not try this in production!)</p>
+        </section>
+
+        <section>
+          <div class="fragment">
+          <h2>Our first component</h2>
+
+          <p>A component in Angular 2 is a <strong>class</strong> with a <code>@Component</code> and <code>@View</code> decorator.</p>
+          </div>
+        </section>
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>
+
+
+
+
+
+
+
+
+class ContactsApp {
+
+}
+
+</code></pre>
+        </section>
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>import {Component, View} from 'angular2/core';
+
+
+@Component({
+  selector: 'contacts-app'
+})
+@View({
+  template: 'Hello World!'
+})
+class ContactsApp {
+
+}
+            </code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em;">How to instantiate that component?</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>import {Component, View} from 'angular2/core';
+
+
+@Component({
+  selector: 'contacts-app'
+})
+@View({
+  template: 'Hello World!'
+})
+class ContactsApp {
+
+}
+
+</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>import {Component, View} from 'angular2/core';
+import {bootstrap} from 'angular2/core';
+
+@Component({
+  selector: 'contacts-app'
+})
+@View({
+  template: 'Hello World!'
+})
+class ContactsApp {
+
+}
+bootstrap(ContactsApp);
+</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><foo-code>import {Component, View} from 'angular2/core';
+<span style="color: #000;">import {bootstrap} from 'angular2/core';</span>
+
+@Component({
+  selector: 'contacts-app'
+})
+@View({
+  template: 'Hello World!'
+})
+class ContactsApp {
+
+}
+<span style="color: #000;">bootstrap(ContactsApp);</span>
+</foo-code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;My first Angular 2 App!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+
+
+    &lt;script src="..."&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.85em; line-height: 50px;"><code>&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;My first Angular 2 App!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    <contacts-app>Loading...</contacts-app>
+
+    &lt;script src="..."&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </section>
+
+        <section>
+          <h2>Bootstrapping Tasks</h2>
+
+          <p>Angular performs the following tasks to bootstrap an application (simplified):</p>
+
+          <ol>
+            <li class="fragment">Upgrades located DOM element into Angular component</li>
+            <li class="fragment">Creates injector for the application</li>
+            <li class="fragment">Creates (emulated) Shadow DOM on component's host element</li>
+            <li class="fragment">Instantiates specified component</li>
+            <li class="fragment">Performs change detection</li>
+          <ol>
+
+        </section>
+
+        <section>
+          <h3><a href="http://plnkr.co/edit/HKgTpqQP5BpguCHhNQJL?p=preview">Demo &rarr;</a></h3>
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Displaying Data</h2>
+        </section>
+
+        <section>
+          <div class="fragment">
+            <p>We can bind data to elements in HTML templates and Angular automatically updates the UI as data changes.</p>
+          </div>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.9em; line-height: 55px;"><code>@Component({...})
+@View({
+  template: 'Hello {{name}}'
+})
+class ContactsApp {
+  name:string = 'AngularJS Days';
+}
+</code></pre>
+        <p style="margin-top: 1em;">&nbsp;</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.9em; line-height: 55px;"><foo-code class="hljs" style="color: #aaa">@Component({...})
+@View({
+  <span style="color: #000;">template: 'Hello {{name}}'</span>
+})
+class ContactsApp {
+  <span style="color: #000;">name:string = 'AngularJS Days';</span>
+}
+</foo-code></pre>
+        <p style="margin-top: 1em;" class="fragment">Which is the equivalent of...</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.9em; line-height: 55px;"><code>@Component({...})
+@View({
+  template: 'Hello {{name}}'
+})
+class ContactsApp {
+  name:string;
+  constructor() {
+    this.name = 'AngularJS Days';
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.9em; line-height: 55px;"><foo-code>@Component({...})
+@View({
+  template: 'Hello {{name}}'
+})
+class ContactsApp {
+  name:string;
+  <span style="color: #000;">constructor() {
+    this.name = 'AngularJS Days';
+  }</span>
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <h3><a href="http://plnkr.co/edit/XahLdxSeA1jarG3IKYFB">Demo &rarr;</a></h3>
+        </section>
+
+        <section>
+          <h3>Let's take it one step further!</h3>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>interface Contact {
+  id: Number;
+  firstname?: string;
+  lastname?: string;
+  street?: string;
+  zip?: string;
+  city?: string;
+  image?: string;
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>@Component()
+@View()
+class ContactsApp {
+  contact: Contact = {
+    id: 1,
+    firstname: 'Christoph',
+    lastname: 'Burgdorf',
+    street: 'thoughtroad 2',
+    zip: '30149',
+    city: 'thoughtworld',
+    image: 'path/to/image'
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><foo-code>@Component()
+@View()
+class ContactsApp {
+  <span style="color: #000;">contact: Contact = {
+    id: 1,
+    firstname: 'Christoph',
+    lastname: 'Burgdorf',
+    street: 'thoughtroad 2',
+    zip: '30149',
+    city: 'thoughtworld',
+    image: 'path/to/image'
+  }</span>
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code><div>
+  <img [src]="contact.image">
+  <span>
+    {{contact.firstname}}
+    {{contact.lastname}}
+  </span>
+</div></code></pre>
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Using Directives</h2>
+        </section>
+
+        <section class="image-slide">
+          <img class="fragment" src="images/contacts-list.svg">
+        </section>
+
+        <section>
+          <p style="font-size: 1.4em;">Let's make it a list!</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>contacts: Contact[] = [
+  { id: 1, firstname: 'Christoph', ...},
+  { id: 2, firstname: 'Pascal', ...},
+  { id: 3, firstname: 'Julie', ...},
+  { id: 4, firstname: 'Igor', ...},
+  ...
+];
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><foo-code><span style="color: #000;">contacts: Contact[]</span> = [
+  { id: 1, firstname: 'Christoph', ...},
+  { id: 2, firstname: 'Pascal', ...},
+  { id: 3, firstname: 'Misko', ...},
+  { id: 4, firstname: 'Igor', ...},
+  ...
+];
+</foo-code></pre>
+        </section>
+
+
+        <section>
+          <p style="font-size: 1.3em;">Remember our component's template?</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code><div>
+  <img [src]="contact.image">
+  <span>
+    {{contact.firstname}}
+    {{contact.lastname}}
+  </span>
+</div></code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code><ul class="collection">
+  <li>
+    <!-- each contact goes here -->
+  </li>
+</ul></code></pre>
+        </section>
+
+        <section>
+          <h2>Iterating over iterables</h2>
+          <p>The <code>NgFor</code> directive instantiates a template once per item from an iterable.</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>
+
+@Component()
+@View({
+
+  ...
+})
+class ContactsApp {
+  contacts: Contact[] = [
+    { id: 1, firstname: 'Christoph', ...},
+    ...
+  ];
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>import {NgFor} from 'angular2/core';
+
+@Component()
+@View({
+  directives: [NgFor],
+  ...
+})
+class ContactsApp {
+  contacts: Contact[] = [
+    { id: 1, firstname: 'Christoph', ...},
+    ...
+  ];
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><foo-code><span style="color: #000;">import {NgFor} from 'angular2/core';</span>
+
+@Component()
+@View({
+  <span style="color: #000;">directives: [NgFor],</span>
+  ...
+})
+class ContactsApp {
+  contacts: Contact[] = [
+    { id: 1, firstname: 'Christoph', ...},
+    ...
+  ];
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code><ul class="collection">
+  <li>
+    <!-- each contact goes here -->
+  </li>
+</ul></code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code><ul class="collection">
+  <li *ng-for="#contact in contacts">
+    <!-- each contact goes here -->
+  </li>
+</ul></code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><foo-code>&lt;ul class="collection"&gt;
+  <span style="color:#000;">&lt;li *ng-for="#contact in contacts"&gt;</span>
+    &lt;!-- each contact goes here --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</foo-code></pre>
+        </section>
+
+        <section>
+          <h3><a href="http://plnkr.co/edit/2nCfyaIXBNd9jWbVukZb?p=preview">Demo &rarr;</a></h3>
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Services and Dependency Injection</h2>
+        </section>
+
+        <section>
+          <div class="fragment">
+            <h2>Services</h2>
+
+            <p>Services in Angular 2 are simpy <strong>ES2015 classes</strong>.</p>
+          </div>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.9em; line-height: 50px;"><code>import {Contact} from '../models/contact';
+
+class ContactsService {
+
+  private contacts: Contact[] = [
+    { id: 1, firstname: 'Christoph', ...},
+    { id: 2, firstname: 'Pascal', ...},
+    { id: 3, firstname: 'Misko', ...},
+  ];
+
+  getContacts() { ... }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><code>@Component()
+@View()
+class ContactsApp {
+
+  contacts: Contact[];
+
+  constructor(contactsService: ContactsService) {
+    this.contacts = contactsService.getContacts();
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><foo-code>@Component()
+@View()
+class ContactsApp {
+
+  <span style="color: #000;">contacts: Contact[];</span>
+
+  constructor(contactsService: ContactsService) {
+    this.contacts = contactsService.getContacts();
+  }
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><foo-code>@Component()
+@View()
+class ContactsApp {
+
+  contacts: Contact[];
+
+  <span style="color: #000;">constructor(contactsService: ContactsService) {
+    this.contacts = contactsService.getContacts();
+  }</span>
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.8em;">But how do we get there?</p>
+        </section>
+
+        <section>
+          <h2>Configuring Injectors</h2>
+
+          <p>We can configure the root component's injector to make any service available for DI.</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.69em; line-height: 45px;"><code>import {Component, View} from 'angular2/core';
+import {bootstrap} from 'angular2/core';
+import {ContactsService} from './common/contacts-service';
+
+@Component()
+@View()
+class ContactsApp {
+  ...
+}
+
+bootstrap(ContactsApp);
+</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.69em; line-height: 45px;"><code>import {Component, View} from 'angular2/core';
+import {bootstrap} from 'angular2/core';
+import {ContactsService} from './common/contacts-service';
+
+@Component()
+@View()
+class ContactsApp {
+  ...
+}
+
+bootstrap(ContactsApp, [ContactsService]);
+</code></pre>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.69em; line-height: 45px;"><foo-code>import {Component, View} from 'angular2/core';
+import {bootstrap} from 'angular2/core';
+import {ContactsService} from './common/contacts-service';
+
+@Component()
+@View()
+class ContactsApp {
+  ...
+}
+
+<span style="color: #000;">bootstrap(ContactsApp, [ContactsService]);</span>
+</foo-code></pre>
+        </section>
+
+        <section data-background="images/yay.gif">
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section class="sub-section-slide" data-background-transition="slide" data-background="#80B4C4">
+          <h2>Component Routing</h2>
+        </section>
+
+        <section class="image-slide">
+          <img class="fragment" src="images/a2-routing-1.svg">
+        </section>
+
+        <section class="image-slide">
+          <img src="images/a2-routing-2.svg">
+        </section>
+
+        <section>
+          <h2>What components do we have?</h2>
+          <p>It turns out that our application consists of three components:</p>
+
+          <ul>
+            <li class="fragment"><strong>ContactsApp</strong> - The root component that is being bootstrapped</li>
+            <li class="fragment"><strong>ContactsList</strong> - A component to list contacts by provided data</li>
+            <li class="fragment"><strong>ContactDetail</strong> - A component to show a contact's details</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Routing</h2>
+          <p>In order to make routing in Angular 2 work, the router module provides the following components:</p>
+          <ul style="margin-top: 1em;">
+            <li class="fragment"><code>RouteConfig</code> - Decorator to statically configure routes</li>
+            <li class="fragment"><code>ROUTER_BINDINGS</code> - Provider to inject <code>Router</code> instance</li>
+            <li class="fragment"><code>ROUTER_DIRECTIVES</code> - Provider to make router related directives available</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Configuring Routes</h2>
+
+          <p>We use the <code>@RouteConfig</code> decorator to configure routes for our application on the root component.</p>
+        </section>
+
+        <section>
+            <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><code>
+
+
+@Component()
+@View()
+
+
+
+class ContactsApp {
+  ...
+}
+bootstrap(ContactsApp, [ContactsService]);
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><code>import {RouteConfig} from '...';
+
+
+@Component()
+@View()
+@RouteConfig([
+  // route definitions go here
+])
+class ContactsApp {
+  ...
+}
+bootstrap(ContactsApp, [ContactsService]);
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><foo-code>import {RouteConfig} from '...';
+
+
+@Component()
+@View()
+<span style="color: #000;">@RouteConfig([
+  // route definitions go here
+])</span>
+class ContactsApp {
+  ...
+}
+bootstrap(ContactsApp, [ContactsService]);
+</foo-code></pre>
+        </section>
+
+        <section>
+          <h2>Route Definitions</h2>
+
+          <p>A <code>RouteDefinition</code> has a <code>path</code>, a <code>component</code>, and an optional alias.</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><foo-code>import {RouteConfig} from '...';
+
+
+@Component()
+@View()
+<span style="color: #000;">@RouteConfig([
+  // route definitions go here
+])</span>
+class ContactsApp {
+  ...
+}
+bootstrap(ContactsApp, [ContactsService]);
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><foo-code>import {RouteConfig} from '...';
+<span style="color: #000;">import {ContactsList} from '...';</span>
+
+@Component()
+@View()
+@RouteConfig([
+  <span style="color: #000;">{ path: '/', component: ContactsList, as: 'ContactList' }</span>
+])
+class ContactsApp {
+  ...
+}
+bootstrap(ContactsApp, [ContactsService]);
+</foo-code></pre>
+        </section>
+
+        <!-- <section> -->
+        <!--   <pre ng-non-bindable style="font-size: 0.65em; line-height: 40px;"><foo-code>import {RouteConfig, <span style="color: #000;">ROUTER_PRIMARY_COMPONENT</span>} from '...'; -->
+<!-- import {ContactsList} from '...'; -->
+
+<!-- @Component() -->
+<!-- @View() -->
+<!-- @RouteConfig([ -->
+  <!-- { path: '/', component: ContactsList, as: 'ContactList' } -->
+<!-- ]) -->
+<!-- class ContactsApp { -->
+  <!-- ... -->
+<!-- } -->
+<!-- bootstrap(ContactsApp, [ -->
+  <!-- ContactsService, -->
+  <!-- <span style="color: #000;">bind(ROUTER_PRIMARY_COMPONENT).toValue(ContacsApp)</span> -->
+<!-- ]); -->
+<!-- </foo-code></pre> -->
+        <!-- </section> -->
+
+        <section>
+          <h2>Displaying components</h2>
+
+          <p>The component router comes with a <code>&lt;router-outlet&gt;</code> directive, to specify a <strong>viewport</strong> where components should be loaded into.</p>
+        </section>
+
+        <section class="image-slide">
+          <img src="images/a2-routing-2.svg">
+        </section>
+
+        <section class="image-slide">
+          <img src="images/contacts-list.svg">
+        </section>
+
+        <section class="image-slide">
+          <img src="images/router-outlet.svg">
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><code>
+
+@Component()
+@View({
+
+
+})
+@RouteConfig()
+class ContactsApp {
+  ...
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><code>import {ROUTER_DIRECTIVES} from '...';
+
+@Component()
+@View({
+  directives: [ROUTER_DIRECTIVES],
+  template: '<router-outlet></router-outlet>'
+})
+@RouteConfig()
+class ContactsApp {
+  ...
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><foo-code>import {<span style="color: #000;">ROUTER_DIRECTIVES</span>} from '...';
+
+@Component()
+@View({
+  <span style="color: #000;">directives: [ROUTER_DIRECTIVES]</span>,
+  template: '&lt;router-outlet&gt;&lt;/router-outlet&gt;'
+})
+@RouteConfig()
+class ContactsApp {
+  ...
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.79em; line-height: 40px;"><foo-code>import {ROUTER_DIRECTIVES} from '...';
+
+@Component()
+@View({
+  directives: [ROUTER_DIRECTIVES],
+  <span style="color: #000;">template: '&lt;router-outlet&gt;&lt;/router-outlet&gt;'</span>
+})
+@RouteConfig()
+class ContactsApp {
+  ...
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <h3>[DEMO]</h3>
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section>
+          <h2>Linking to other components</h2>
+
+          <p>The <code>router-link</code> directive can be used to declaratively link to a specific part of our application <strong>using a DSL</strong>.</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.67em; line-height: 40px;"><code>
+
+@Component()
+@View()
+@RouteConfig([
+  { path: '/', component: ContactsList, as: 'ContactList' }
+
+
+
+
+
+])
+class ContactsApp {
+  ...
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.67em; line-height: 40px;"><code>import {ContactDetail} from '...';
+
+@Component()
+@View()
+@RouteConfig([
+  { path: '/', component: ContactsList, as: 'ContactList' },
+  { 
+    path: '/contact/:id',
+    component: ContactDetail,
+    as: 'ContactDetail'
+  }
+])
+class ContactsApp {
+  ...
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.67em; line-height: 40px;"><foo-code><span style="color: #000;">import {ContactDetail} from '...';</span>
+
+@Component()
+@View()
+@RouteConfig([
+  { path: '/', component: ContactsList, as: 'ContactList' },
+  <span style="color: #000;">{ 
+    path: '/contact/:id',
+    component: ContactDetail,
+    as: 'ContactDetail'
+  }</span>
+])
+class ContactsApp {
+  ...
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.64em; line-height: 40px;"><code><ul class="collection">
+  <li *ng-for="#contact in contacts">
+
+      <img [src]="contact.image">
+      <span>
+        {{contact.firstname}}
+        {{contact.lastname}}
+      </span>
+
+  </li>
+</ul></code></pre>
+        </section>
+
+        
+        <section>
+          <pre ng-non-bindable style="font-size: 0.64em; line-height: 40px;"><code><ul class="collection">
+  <li *ng-for="#contact in contacts">
+    <a [router-link]="['/ContactDetail', { id: contact.id }]">
+      <img [src]="contact.image">
+      <span>
+        {{contact.firstname}}
+        {{contact.lastname}}
+      </span>
+    </a>
+  </li>
+</ul></code></pre>
+
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.64em; line-height: 40px;"><foo-code>&lt;ul class="collection"&gt;
+  &lt;li *ng-for="#contact in contacts"&gt;
+    &lt;a <span style="color: #000;">[router-link]="['/ContactDetail', { id: contact.id }]"</span>&gt;
+      &lt;img [src]="contact.image"&gt;
+      &lt;span&gt;
+        {{contact.firstname}}
+        {{contact.lastname}}
+      &lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gl;</foo-code></pre>
+        </section>
+        <section>
+          <pre ng-non-bindable style="font-size: 0.6em; line-height: 35px;"><code>
+
+@Component({selector: 'contact-detail'})
+@View({
+  templateUrl: 'contact-detail.html'
+})
+export class ContactDetail {
+
+  contact:Contact;
+
+  constructor() {
+
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <p style="font-size: 1.3em;">How do we get access to route params?</p>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.58em; line-height: 35px;"><code>
+
+@Component({selector: 'contact-detail'})
+@View({
+  templateUrl: 'contact-detail.html'
+})
+export class ContactDetail {
+
+  contact:Contact;
+
+  constructor() {
+
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.58em; line-height: 35px;"><code>import {RouteParams} from 'angular2/router';
+
+@Component({selector: 'contact-detail'})
+@View({
+  templateUrl: 'contact-detail.html'
+})
+export class ContactDetail {
+
+  contact:Contact;
+
+  constructor(params:RouteParams, contactsService:ContactsService) {
+    this.contact = contactsService.getContact(params.get('id'));
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.58em; line-height: 35px;"><foo-code><span style="color: #000;">import {RouteParams} from 'angular2/router';</span>
+
+@Component({selector: 'contact-detail'})
+@View({
+  templateUrl: 'contact-detail.html'
+})
+export class ContactDetail {
+
+  contact:Contact;
+
+  constructor(<span style="color: #000;">params:RouteParams</span>, contactsService:ContactsService) {
+    this.contact = contactsService.getContact(<span style="color: #000;">params.get('id')</span>);
+  }
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.58em; line-height: 35px;"><foo-code>import {RouteParams} from 'angular2/router';
+
+@Component({selector: 'contact-detail'})
+@View({
+  templateUrl: 'contact-detail.html'
+})
+export class ContactDetail {
+
+  contact:Contact;
+
+  constructor(params:RouteParams, <span style="color: #000;">contactsService:ContactsService</span>) {
+    this.contact = <span style="color: #000;">contactsService.getContact(params.get('id'));</span>
+  }
+}
+</foo-code></pre>
+        </section>
+
+        <section>
+          <pre ng-non-bindable style="font-size: 0.64em; line-height: 40px;"><code><div>
+  <span>{{contact.firstname}} {{contact.lastname}}</span>
+  <span>{{contact.street}}</span>
+  <span>{{contact.zip}} {{contact.city}}</span>
+  <span>{{contact.country}}</span>
+</div></code></pre>
+        </section>
+
+        <section data-background="images/your_turn.gif">
+          <h1 style="color: #fff; transform: rotateZ(-14deg); margin-top: 2em;"><strong>Your turn!</strong></h1>
+        </section>
+
+        <section>
+          <p>Demo App: <a href="https://github.com/thoughtram/ng2-contacts-demo">github.com/thoughtram/ng2-contacts-demo</a></p>
+        </section>
+
+        <section class="thoughtram-slide" data-background="#f0f0f0">
+          <img alt="thoughtram brain" src="img/thoughtram-brain-black.png">
+          <img alt="Extend your memory." src="img/thoughtram-logo-line-with-tag-line.png">
+        </section>
+      </div>
+
+    </div>
+    <script src="app.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
